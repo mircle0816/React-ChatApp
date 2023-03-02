@@ -8,7 +8,7 @@ const app = express()
 app.use(cors())
 
 const server = http.createServer(app);
-
+     httpServer.listen(PORT);
 const io = new Server(server, {
     cors: {
       origin: "http://localhost:3000",
@@ -25,7 +25,7 @@ io.on("connection", (socket) => {
     socket.on("joinRoom", room => {
           socket.join(room)
     })
-     httpServer.listen(PORT);
+    
     socket.on("newMessage", ({newMessage, room}) => {
       io.in(room).emit("getLatestMessage", newMessage)
     })  
