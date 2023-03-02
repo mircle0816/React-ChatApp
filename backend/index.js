@@ -1,13 +1,12 @@
+const express = require("express")
 const { Server } = require("socket.io");
-const app = express();
-let port = process.env.PORT || 8080;
-const server = http.createServer(app);
-server.listen(port, () => console.log("App listening at localhost:" + port));
-
+var http = require('http');
 const cors = require("cors")
+const PORT = process.env.PORT || 9000
 
 const app = express()
 app.use(cors())
+
 const server = http.createServer(app);
 
 const io = new Server(server, {
@@ -26,12 +25,12 @@ io.on("connection", (socket) => {
     socket.on("joinRoom", room => {
           socket.join(room)
     })
-  
+     httpServer.listen(PORT);
     socket.on("newMessage", ({newMessage, room}) => {
       io.in(room).emit("getLatestMessage", newMessage)
     })  
 });
   
-//   const port = process.env.PORT || 9000
+
   
   server.listen(port, console.log(`App started at port ${port}`))
