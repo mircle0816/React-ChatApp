@@ -1,17 +1,14 @@
-const express = require("express")
 const { Server } = require("socket.io");
-var http = require('http');
+const app = express();
+let port = process.env.PORT || 8080;
+const server = http.createServer(app);
+server.listen(port, () => console.log("App listening at localhost:" + port));
+
 const cors = require("cors")
 
 const app = express()
 app.use(cors())
 const server = http.createServer(app);
-
-const socket = require("socket.io-client")("https://react-chat-app-8yak.vercel.app");
-
-socket.on("connect_error", (err) => {
-  console.log(`connect_error due to ${err.message}`);
-});
 
 const io = new Server(server, {
     cors: {
@@ -35,6 +32,6 @@ io.on("connection", (socket) => {
     })  
 });
   
-  const port = process.env.PORT || 9000
+//   const port = process.env.PORT || 9000
   
   server.listen(port, console.log(`App started at port ${port}`))
