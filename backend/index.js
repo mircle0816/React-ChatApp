@@ -5,8 +5,13 @@ const cors = require("cors")
 
 const app = express()
 app.use(cors())
-
 const server = http.createServer(app);
+
+const socket = require("socket.io-client")("https://react-chat-app-8yak.vercel.app");
+
+socket.on("connect_error", (err) => {
+  console.log(`connect_error due to ${err.message}`);
+});
 
 const io = new Server(server, {
     cors: {
