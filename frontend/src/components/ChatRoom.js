@@ -111,7 +111,7 @@ const ChatRoom = () => {
         </div>
 
         <div className='form-group d-flex picker-container'>
-            <textarea className='form-control bg-light' name='message' onKeyDown={handleEnter} placeholder='Type your message here 1' value={msg} onChange={handleChange} autoComplete='off'/>
+            <textarea className='form-control bg-light' name='message' onKeyDown={handleEnter} placeholder='Type your message here' value={msg} onChange={handleChange} autoComplete='off'/>
             
             <button className='btn btn-primary mx-0' onClick={onSubmit} disabled={loading}>
             {
